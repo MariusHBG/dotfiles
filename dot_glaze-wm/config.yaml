@@ -120,6 +120,11 @@ window_rules:
   - command: "move to workspace 2"
     match_process_name: "devenv|Code"
 
+  # ScreenSketch
+  - command: "set floating"
+    match_process_name: "ScreenSketch"
+
+    
 binding_modes:
   - name: "resize"
     keybindings:
