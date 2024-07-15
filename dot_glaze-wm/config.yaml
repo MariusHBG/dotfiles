@@ -128,6 +128,10 @@ window_rules:
   - command: "move to workspace 4"
     match_process_name: "Obsidian"
 
+  # Windows terminal
+  - command: "set floating"
+    match_process_name: "WindowsTerminal"
+
 binding_modes:
   - name: "resize"
     keybindings:
