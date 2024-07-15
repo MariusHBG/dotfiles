@@ -111,6 +111,15 @@ window_rules:
   - command: "resize borders 0px -7px -7px -7px"
     match_process_name: "steam"
 
+  # Chrome
+  - command: "move to workspace 3"
+    match_process_name: "chrome"
+    match_title: "/.*/"
+
+  # IDEs
+  - command: "move to workspace 2"
+    match_process_name: "devenv|Code"
+
 binding_modes:
   - name: "resize"
     keybindings:
