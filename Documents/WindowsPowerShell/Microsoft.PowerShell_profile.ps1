@@ -34,7 +34,7 @@ Set-alias hosts invoke-hosts
 Set-alias pp Invoke-Profile
 Set-alias repos Set-LocationRepos
 Set-alias touch New-File
-Set-alias grep findstr	
+Set-alias grep findstr
 
 $ENV:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
 Invoke-Expression (&starship init powershell)
@@ -42,3 +42,13 @@ Invoke-Expression (&starship init powershell)
 # oh-my-posh init pwsh | invoke-expression
 
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | invoke-expression
+
+if ($env:uwscreen -eq "true")
+{
+	$Env:KOMOREBI_CONFIG_HOME = "C:\Users\$env:USERNAME\.komorebi\komorebi-uwscreen"
+}
+else
+{
+	$Env:KOMOREBI_CONFIG_HOME = "C:\Users\$env:USERNAME\.komorebi\komorebi-2-screens"
+}
+
