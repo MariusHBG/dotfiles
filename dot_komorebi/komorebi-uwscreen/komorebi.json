@@ -3,13 +3,13 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/.komorebi/applications.yaml",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 5,
-  "default_container_padding": 5,
+  "default_workspace_padding": 2,
+  "default_container_padding": 2,
   "border": true,
-  "border_width": 8,
+  "border_width": 10,
   "border_offset": -1,
   "border_colours": {
-    "single": "#42a5f5",
+    "single": "#00a542",
     "stack": "#00a542",
     "monocle": "#ff3399",
     "unfocused": "#808080"
@@ -26,11 +26,11 @@
   },
   "monitors": [
     {
-      "window_based_work_area_offset_limit": 2,
+      "window_based_work_area_offset_limit": 1,
       "window_based_work_area_offset": {
-        "left": 1150,
+        "left": 950,
         "top": 0,
-        "right": 2300,
+        "right": 2100,
         "bottom": 0
       },
       "workspaces": [
@@ -44,21 +44,33 @@
           "workspace_rules": [
             {
               "kind": "Exe",
-              "id": "Code.exe"
-            },
-            {
-              "kind": "Exe",
               "id": "devenv.exe"
             }
           ]
         },
         {
           "name": "III",
-          "layout": "UltrawideVerticalStack"
+          "layout": "UltrawideVerticalStack",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "notepad++.exe"
+            },
+            {
+              "kind": "Exe",
+              "id": "Log4View.exe"
+            }
+          ]
         },
         {
           "name": "IV",
-          "layout": "UltrawideVerticalStack"
+          "layout": "UltrawideVerticalStack",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "chrome.exe"
+            }
+          ]
         },
         {
           "name": "V",
@@ -66,7 +78,13 @@
         },
         {
           "name": "VI",
-          "layout": "UltrawideVerticalStack"
+          "layout": "UltrawideVerticalStack",
+          "workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "OUTLOOK.EXE"
+            }
+          ]
         },
         {
           "name": "VII",
