@@ -52,3 +52,4 @@ else
 	$Env:KOMOREBI_CONFIG_HOME = "C:\Users\$env:USERNAME\.komorebi\komorebi-2-screens"
 }
 
+$Env:XDG_CONFIG_HOME = "$HOME/.config"
