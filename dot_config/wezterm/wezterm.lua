@@ -1,19 +1,20 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
-
--- This will hold the configuration.
+local act = wezterm.action
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
--- config.color_scheme = 'Catppuccin Macchiato'
-config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Catppuccin Macchiato"
+-- config.color_scheme = "Catppuccin Frappe"
 -- config.color_scheme = "OneHalfDark"
--- config.color_scheme = "One Dark (Gogh)"
+-- config.color_scheme = "One Dark (Frappe)"
 
 config.default_prog = { "powershell.exe" }
--- config.font = wezterm.font("JetBrains Mono")
 
--- and finally, return the configuration to wezterm
+config.enable_scroll_bar = true
+
+config.keys = {
+	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
+	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(1) },
+}
+
 return config
