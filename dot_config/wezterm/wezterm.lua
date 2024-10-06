@@ -40,9 +40,8 @@ local choose_workspace_callback = function(window, pane)
 
 	local home = wezterm.home_dir
 	local workspaces = {
-		{ id = home, label = "Home" },
-		{ id = home .. "/work", label = "Work" },
-		{ id = home .. "/personal", label = "Personal" },
+		{ id = home .. "/source", label = "Source" },
+		{ id = home .. "/other", label = "Other" },
 		{ id = home .. "/.config", label = "Config" },
 	}
 
@@ -135,6 +134,8 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action_callback(choose_workspace_callback),
 	},
+
+	{ key = "l", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
 }
 
 for i = 1, 8 do
@@ -146,18 +147,34 @@ for i = 1, 8 do
 	})
 end
 
--- config.keys = {
--- 	{
--- 		key = "sh",
--- 		mods = "LEADER",
--- 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
--- 	},
--- 	-- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
--- 	{
--- 		key = "y",
--- 		mods = "LEADER|CTRL",
--- 		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
--- 	},
--- }
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function(cmd)
+	-- allow `wezterm start -- something` to affect what we spawn
+	-- in our initial window
+	local args = {}
+	if cmd then
+		args = cmd.args
+	end
+
+	-- Set a workspace for coding on a current project
+	-- Top pane is for the editor, bottom pane is for the build tool
+	local project_dir = wezterm.home_dir .. "/wezterm"
+	local tab, build_pane, window = mux.spawn_window({
+		workspace = "Source",
+		cwd = project_dir,
+		args = args,
+	})
+	local editor_pane = build_pane:split({
+		direction = "Top",
+		size = 0.6,
+		cwd = project_dir,
+	})
+	-- may as well kick off a build in that pane
+	-- build_pane:send_text("cargo build\n")
+
+	-- We want to startup in the coding workspace
+	mux.set_active_workspace("Source")
+end)
 
 return config
