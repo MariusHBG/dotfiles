@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
+local log = wezterm.log_info
 
 local function is_vim(pane)
 	-- this is set by the plugin, and unset on ExitPre in Neovim
@@ -64,7 +65,6 @@ local choose_workspace_callback = function(window, pane)
 						activate(inner_window, inner_pane, id, label)
 					else
 						wezterm.log_info("Executing default activation logic")
-						-- Get the custom workspace setup if existing
 						inner_window:perform_action(
 							act.SwitchToWorkspace({
 								name = label,
@@ -167,8 +167,6 @@ for i = 1, 8 do
 		action = wezterm.action.ActivateTab(i - 1),
 	})
 end
-
-local mux = wezterm.mux
 
 wezterm.on("gui-startup", function(cmd) end)
 
