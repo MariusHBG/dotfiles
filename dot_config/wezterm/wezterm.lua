@@ -56,11 +56,12 @@ local choose_workspace_callback = function(window, pane)
 				else
 					wezterm.log_info("id = " .. id)
 					wezterm.log_info("label = " .. label)
+
 					local activate = workspace_templates[label]
 
 					if activate ~= nil then
 						wezterm.log_info("Executing custom workspace activation logic")
-						activate(inner_window, inner_pane)
+						activate(inner_window, inner_pane, id, label)
 					else
 						wezterm.log_info("Executing default activation logic")
 						-- Get the custom workspace setup if existing
