@@ -59,10 +59,16 @@ config.default_prog = { "powershell.exe" }
 config.enable_scroll_bar = true
 
 config.keys = {
+	-- Scrolling up/down
 	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
 	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(1) },
-	{ key = "PageUp", mods = "CTRL", action = act.MoveTabRelative(-1) },
-	{ key = "PageDown", mods = "CTRL", action = act.MoveTabRelative(1) },
+
+	-- Activating tabs
+	{ key = "PageUp", mods = "CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = "PageDown", mods = "CTRL", action = act.ActivateTabRelative(1) },
+
+	{ key = "LeftArrow", mods = "CTRL|ALT", action = act.MoveTabRelative(-1) },
+	{ key = "RightArrow", mods = "CTRL|ALT", action = act.MoveTabRelative(1) },
 
 	-- move between split panes
 	split_nav("move", "LeftArrow"),
@@ -89,7 +95,7 @@ for i = 1, 8 do
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "CTRL|ALT",
-		action = wezterm.action.MoveTab(i - 1),
+		action = wezterm.action.ActivateTab(i - 1),
 	})
 end
 
