@@ -36,9 +36,12 @@ local function split_nav(resize_or_move, key)
 end
 
 local choose_workspace_callback = function(window, pane)
-	-- Here you can dynamically construct a longer list if needed
-
+	-- Function to find the entry by id
 	local home = wezterm.home_dir
+	local workspace_lib = require("workspaces")
+	local workspace_templates = {
+		Source = workspace_lib.launch_coding_workspace,
+	}
 	local workspaces = {
 		{ id = home .. "/source", label = "Source" },
 		{ id = home .. "/other", label = "Other" },
@@ -53,16 +56,25 @@ local choose_workspace_callback = function(window, pane)
 				else
 					wezterm.log_info("id = " .. id)
 					wezterm.log_info("label = " .. label)
-					inner_window:perform_action(
-						act.SwitchToWorkspace({
-							name = label,
-							spawn = {
-								label = "Workspace: " .. label,
-								cwd = id,
-							},
-						}),
-						inner_pane
-					)
+					local activate = workspace_templates[label]
+
+					if activate ~= nil then
+						wezterm.log_info("Executing custom workspace activation logic")
+						activate(inner_window, inner_pane)
+					else
+						wezterm.log_info("Executing default activation logic")
+						-- Get the custom workspace setup if existing
+						inner_window:perform_action(
+							act.SwitchToWorkspace({
+								name = label,
+								spawn = {
+									label = "Workspace: " .. label,
+									cwd = id,
+								},
+							}),
+							inner_pane
+						)
+					end
 				end
 			end),
 			title = "Choose Workspace",
@@ -72,6 +84,11 @@ local choose_workspace_callback = function(window, pane)
 		}),
 		pane
 	)
+end
+
+local debug_callback = function(window, pane)
+	wezterm.log_info("In the debug function")
+	wezterm.log_info(pane:get_current_working_dir())
 end
 
 -- -- timeout_milliseconds defaults to 1000 and can be omitted
@@ -86,6 +103,7 @@ config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.95
 config.window_decorations = "RESIZE"
 
+config.quit_when_all_windows_are_closed = true
 config.inactive_pane_hsb = {
 	saturation = 0.8,
 	brightness = 0.7,
@@ -136,6 +154,8 @@ config.keys = {
 	},
 
 	{ key = "l", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "WORKSPACES" }) },
+
+	{ key = "q", mods = "LEADER", action = wezterm.action_callback(debug_callback) },
 }
 
 for i = 1, 8 do
@@ -149,32 +169,6 @@ end
 
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function(cmd)
-	-- allow `wezterm start -- something` to affect what we spawn
-	-- in our initial window
-	local args = {}
-	if cmd then
-		args = cmd.args
-	end
-
-	-- Set a workspace for coding on a current project
-	-- Top pane is for the editor, bottom pane is for the build tool
-	local project_dir = wezterm.home_dir .. "/wezterm"
-	local tab, build_pane, window = mux.spawn_window({
-		workspace = "Source",
-		cwd = project_dir,
-		args = args,
-	})
-	local editor_pane = build_pane:split({
-		direction = "Top",
-		size = 0.6,
-		cwd = project_dir,
-	})
-	-- may as well kick off a build in that pane
-	-- build_pane:send_text("cargo build\n")
-
-	-- We want to startup in the coding workspace
-	mux.set_active_workspace("Source")
-end)
+wezterm.on("gui-startup", function(cmd) end)
 
 return config
