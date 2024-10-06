@@ -35,6 +35,9 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+-- -- timeout_milliseconds defaults to 1000 and can be omitted
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
+
 config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Catppuccin Frappe"
@@ -71,6 +74,14 @@ config.keys = {
 	split_nav("resize", "DownArrow"),
 	split_nav("resize", "UpArrow"),
 	split_nav("resize", "RightArrow"),
+
+	-- split pane
+	{ key = "h", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+
+	-- Windows
+	-- { key = "n", mods = "LEADER", action = wezterm.action.SpawnWindow },
+	{ key = "c", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 }
 
 for i = 1, 8 do
@@ -82,8 +93,6 @@ for i = 1, 8 do
 	})
 end
 
--- -- timeout_milliseconds defaults to 1000 and can be omitted
--- config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 -- config.keys = {
 -- 	{
 -- 		key = "sh",
