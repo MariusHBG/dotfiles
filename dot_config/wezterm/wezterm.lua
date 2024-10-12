@@ -140,8 +140,9 @@ config.keys = {
 	split_nav("resize", "RightArrow"),
 
 	-- split pane
-	{ key = "h", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	-- Inverted vertical and horizontal because this matches the nvim definition
+	{ key = "h", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "v", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
 	-- Windows
 	-- { key = "n", mods = "LEADER", action = wezterm.action.SpawnWindow },
