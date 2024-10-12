@@ -117,6 +117,7 @@ style = "bg:teal"
 format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
 
 [git_status]
+disabled = true
 style = "bg:teal"
 format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
 
