@@ -1,6 +1,5 @@
 local statusbar = {}
 local wezterm = require 'wezterm'
-local appearance = require 'appearance'
 
 local function segments_for_right_status(window)
     return {
@@ -16,7 +15,7 @@ function statusbar.configure()
         local segments = segments_for_right_status(window)
 
         local color_scheme = window:effective_config().resolved_palette
-        wezterm.log_info(string.format('retrieved color scheme %s', color_scheme))
+
         -- Note the use of wezterm.color.parse here, this returns
         -- a Color object, which comes with functionality for lightening
         -- or darkening the colour (amongst other things).
@@ -27,11 +26,8 @@ function statusbar.configure()
         -- darker/lighter depending on whether we're on a dark/light colour
         -- scheme. Let's establish the "from" and "to" bounds of our gradient.
         local gradient_to, gradient_from = bg
-        if appearance.is_dark() then
-            gradient_from = gradient_to:lighten(0.2)
-        else
-            gradient_from = gradient_to:darken(0.2)
-        end
+
+        gradient_from = gradient_to:lighten(0.2)
 
         -- Yes, WezTerm supports creating gradients, because why not?! Although
         -- they'd usually be used for setting high fidelity gradients on your terminal's
