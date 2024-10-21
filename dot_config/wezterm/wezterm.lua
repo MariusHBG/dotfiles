@@ -171,4 +171,6 @@ end
 
 wezterm.on('gui-startup', function(cmd) end)
 
+require('statusbar').configure()
+
 return config
