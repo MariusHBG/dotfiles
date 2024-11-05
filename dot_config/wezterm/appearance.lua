@@ -1,11 +1,11 @@
--- We almost always start by importing the wezterm module
+-- We almost always start by importing the wezterm config
 local wezterm = require 'wezterm'
--- Define a lua table to hold _our_ module's functions
-local module = {}
+-- Define a lua table to hold _our_ config's functions
+local config = {}
 
 -- Returns a bool based on whether the host operating system's
 -- appearance is light or dark.
-function module.is_dark()
+function config.is_dark()
     -- wezterm.gui is not always available, depending on what
     -- environment wezterm is operating in. Just return true
     -- if it's not defined.
@@ -18,4 +18,4 @@ function module.is_dark()
     return true
 end
 
-return module
+return config

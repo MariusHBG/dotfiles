@@ -102,7 +102,8 @@ config.color_scheme = 'Catppuccin Mocha'
 -- config.color_scheme = "OneHalfDark"
 -- config.color_scheme = "One Dark (Frappe)"
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.98
+-- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
 config.window_decorations = 'RESIZE'
 
 config.quit_when_all_windows_are_closed = true
@@ -173,5 +174,9 @@ end
 wezterm.on('gui-startup', function(cmd) end)
 
 require('statusbar').configure()
+
+-- config.underline_thickness = '200%'
+-- config.underline_position = '-3pt'
+-- config.term = 'wezterm'
 
 return config
