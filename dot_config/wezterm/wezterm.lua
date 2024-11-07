@@ -18,7 +18,7 @@ local direction_keys = {
 local function split_nav(resize_or_move, key)
     return {
         key = key,
-        mods = resize_or_move == 'resize' and 'META' or 'CTRL',
+        mods = resize_or_move == 'resize' and 'META|CTRL' or 'CTRL',
         action = wezterm.action_callback(function(win, pane)
             if is_vim(pane) then
                 -- pass the keys through to vim/nvim
@@ -127,8 +127,8 @@ config.keys = {
     { key = 'PageUp', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
     { key = 'PageDown', mods = 'CTRL', action = act.ActivateTabRelative(1) },
 
-    { key = 'LeftArrow', mods = 'CTRL|ALT', action = act.MoveTabRelative(-1) },
-    { key = 'RightArrow', mods = 'CTRL|ALT', action = act.MoveTabRelative(1) },
+    { key = 'PageUp', mods = 'CTRL|ALT', action = act.MoveTabRelative(-1) },
+    { key = 'PageDown', mods = 'CTRL|ALT', action = act.MoveTabRelative(1) },
 
     -- move between split panes
     split_nav('move', 'LeftArrow'),
