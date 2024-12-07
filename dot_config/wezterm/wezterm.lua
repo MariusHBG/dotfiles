@@ -114,7 +114,9 @@ config.inactive_pane_hsb = {
 
 config.use_fancy_tab_bar = true
 
-config.default_prog = { 'powershell.exe' }
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+	config.default_prog = { 'powershell.exe' }
+end
 
 config.enable_scroll_bar = true
 
