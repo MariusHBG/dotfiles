@@ -1,0 +1,4 @@
+alias ..="cd .."
+alias ...="cd ..."
+alias repos="cd ~/source/repos"
+alias pp="nvim ~/.bashrc"
