@@ -1,0 +1,84 @@
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+	mkdir -p "$(dirname $ZINIT_HOME)"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Load starship theme
+# line 1: `starship` binary as command, from github release
+# line 2: starship setup at clone(create init.zsh, completion)
+# line 3: pull behavior same as clone, source init.zsh
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+
+# Syntax highlighting
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Add in snippets
+zinit snippet OMZP::git
+# Additional useful snippets:
+# zinit snippet OMZP::sudo
+# zinit snippet OMZP::archlinux
+# zinit snippet OMZP::aws
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
+# zinit snippet OMZP::command-not-found
+
+# Auto completion
+zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
+zinit cdreplay -q # replay all cached completions, recommended by zinit documentation
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Bind ctrl-f to trigger autosuggest
+bindkey '^y' autosuggest-accept
+# Setting those two will respect already typed text when showing history
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# Vim bindings
+# bindkey -v
+
+# Persist history across sessions
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase # Erase duplicates in history file
+setopt appendhistory # zsh will append to history file instead of overwriting it
+setopt sharehistory
+setopt hist_ignore_space # Allows to not write command to history by putting a space before it
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Make completion case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# Colored ls for completion list
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no # Disable default completion menu so that fzf is used
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Aliases
+alias ls='ls --color'
+alias c=z
+
+# Shell integrations
+eval "$(fzf --zsh)" # Will enable fuzzy finding on reverse search with ctrl-r, and more
+
+PATH=$PATH:~/.local/bin
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
