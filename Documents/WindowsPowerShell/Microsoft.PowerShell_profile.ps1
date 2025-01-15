@@ -30,11 +30,41 @@ function ....() {
 	cd ..
 }
 
+function start-simulation() {
+	& "C:\Program Files (x86)\QSim\Ressources\SIL_0.41.1.3.exe"
+}
+
+function stop-simulation(){
+	# Define a regex pattern to match process names starting with "SIL_" followed by a version number
+	$pattern = "^SIL_\d+\.\d+\.\d+\.\d+$"
+
+	# Get all processes
+	$processes = Get-Process | Where-Object { $_.Name -match $pattern }
+
+	# Check if any matching process is found
+	if ($processes) {
+		foreach ($process in $processes) {
+			try {
+				# Stop the process
+				Write-Host "Stopping process: $($process.Name) (ID: $($process.Id))" -ForegroundColor Yellow
+				Stop-Process -Id $process.Id
+				Write-Host "Process $($process.Name) stopped successfully." -ForegroundColor Green
+			} catch {
+				Write-Host "Failed to stop process: $($process.Name). Error: $_" -ForegroundColor Red
+			}
+		}
+	} else {
+		Write-Host "No matching processes found." -ForegroundColor Cyan
+	}
+}
+
 Set-alias hosts invoke-hosts
 Set-alias pp Invoke-Profile
 Set-alias repos Set-LocationRepos
 Set-alias touch New-File
 Set-alias grep findstr
+Set-alias startsim start-simulation
+Set-alias stopsim stop-simulation
 
 $ENV:STARSHIP_CONFIG = "$HOME\.starship\starship.toml"
 Invoke-Expression (&starship init powershell)
