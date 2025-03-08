@@ -1,0 +1,24 @@
+[user]
+	email = marius_gr@web.de
+	name = Marius Gruber
+[core]
+	editor = nvim
+[credential]
+	helper = /home/marius/.dotnet/tools/git-credential-manager
+	credentialStore = plaintext
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[diff]
+	tool = nvim
+[difftool]
+	prompt = false
+[difftool "nvim"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+	tool = nvim
+[mergetool "nvim"]
+	cmd = nvim -d \"$MERGED\" \"$LOCAL\" \"$REMOTE\" -c \"wincmd J\"
+[mergetool]
+	keepBackup = false
+	prompt = false
