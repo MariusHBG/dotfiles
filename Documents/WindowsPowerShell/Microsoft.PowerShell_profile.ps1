@@ -31,12 +31,12 @@ function ....() {
 }
 
 function start-simulation() {
-	& "C:\Program Files (x86)\QSim\Ressources\SIL_0.41.1.3.exe"
+	& "C:\Program Files (x86)\QSim\Ressources\QSim_SIL_41.5.2.1"
 }
 
 function stop-simulation(){
 	# Define a regex pattern to match process names starting with "SIL_" followed by a version number
-	$pattern = "^SIL_\d+\.\d+\.\d+\.\d+$"
+	$pattern = "QSim_SIL"
 
 	# Get all processes
 	$processes = Get-Process | Where-Object { $_.Name -match $pattern }
