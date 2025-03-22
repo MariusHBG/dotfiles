@@ -181,4 +181,13 @@ require('statusbar').configure()
 -- config.underline_position = '-3pt'
 -- config.term = 'wezterm'
 
+-- Fix ctrl-arrow keybinding not working when running nvim inside tmux inside WSL
+config.keys = {
+    -- Force send raw escape sequences for Ctrl+Arrow keys
+    { key = 'RightArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5C' },
+    { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5D' },
+    { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5A' },
+    { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5B' },
+}
+
 return config
