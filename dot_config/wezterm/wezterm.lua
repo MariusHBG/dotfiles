@@ -1,11 +1,18 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
-local log = wezterm.log_info
 
 local function is_vim(pane)
     -- this is set by the plugin, and unset on ExitPre in Neovim
     return pane:get_user_vars().IS_NVIM == 'true'
+end
+
+local function is_wsl(pane)
+    local process_name = pane:get_foreground_process_name()
+    if string.find(process_name, 'WSL') then
+        return true
+    end
+    return false
 end
 
 local direction_keys = {
@@ -20,7 +27,7 @@ local function split_nav(resize_or_move, key)
         key = key,
         mods = resize_or_move == 'resize' and 'META|CTRL' or 'CTRL',
         action = wezterm.action_callback(function(win, pane)
-            if is_vim(pane) then
+            if is_vim(pane) or is_wsl(pane) then
                 -- pass the keys through to vim/nvim
                 win:perform_action({
                     SendKey = { key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' },
@@ -180,14 +187,5 @@ require('statusbar').configure()
 -- config.underline_thickness = '200%'
 -- config.underline_position = '-3pt'
 -- config.term = 'wezterm'
-
--- Fix ctrl-arrow keybinding not working when running nvim inside tmux inside WSL
-config.keys = {
-    -- Force send raw escape sequences for Ctrl+Arrow keys
-    { key = 'RightArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5C' },
-    { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5D' },
-    { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5A' },
-    { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5B' },
-}
 
 return config
