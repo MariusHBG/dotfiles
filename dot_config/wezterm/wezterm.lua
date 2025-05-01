@@ -113,6 +113,9 @@ config.window_background_opacity = 0.98
 -- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
 config.window_decorations = 'RESIZE'
 
+-- Fix for bright green background on some folders in ls output in  WSL
+-- config.text_background_opacity = 0.3
+
 config.quit_when_all_windows_are_closed = true
 config.inactive_pane_hsb = {
     saturation = 0.8,
@@ -122,7 +125,7 @@ config.inactive_pane_hsb = {
 config.use_fancy_tab_bar = true
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-	config.default_prog = { 'powershell.exe' }
+    config.default_prog = { 'powershell.exe' }
 end
 
 config.enable_scroll_bar = true
