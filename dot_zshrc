@@ -79,6 +79,7 @@ alias c=z
 # Shell integrations
 eval "$(fzf --zsh)" # Will enable fuzzy finding on reverse search with ctrl-r, and more
 
+export EDITOR=nvim
 PATH=$PATH:~/.local/bin
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(zoxide init zsh)"
