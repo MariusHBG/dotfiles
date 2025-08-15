@@ -83,3 +83,8 @@ export EDITOR=nvim
 PATH=$PATH:~/.local/bin
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(zoxide init zsh)"
+
+# Machine-specific overrides (ignored by Git)
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
