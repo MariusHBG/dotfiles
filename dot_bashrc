@@ -131,9 +131,6 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 . "$HOME/.cargo/env"
 
-
 if test -t 1; then
 	exec zsh
 fi
-
-source ~/.bashrc-exts
