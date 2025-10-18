@@ -138,9 +138,8 @@ config.keys = {
     -- Activating tabs
     { key = 'PageUp', mods = 'CTRL', action = act.ActivateTabRelative(-1) },
     { key = 'PageDown', mods = 'CTRL', action = act.ActivateTabRelative(1) },
-
-    { key = 'PageUp', mods = 'CTRL|ALT', action = act.MoveTabRelative(-1) },
-    { key = 'PageDown', mods = 'CTRL|ALT', action = act.MoveTabRelative(1) },
+    { key = 'p', mods = 'LEADER', action = act.MoveTabRelative(1) },
+    { key = 'n', mods = 'LEADER', action = act.MoveTabRelative(-1) },
 
     -- move between split panes
     split_nav('move', 'LeftArrow'),
@@ -178,7 +177,7 @@ for i = 1, 8 do
     -- CTRL+ALT + number to move to that position
     table.insert(config.keys, {
         key = tostring(i),
-        mods = 'CTRL|ALT',
+        mods = 'LEADER',
         action = wezterm.action.ActivateTab(i - 1),
     })
 end
