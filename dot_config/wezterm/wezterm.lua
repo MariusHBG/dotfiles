@@ -99,6 +99,8 @@ local debug_callback = function(window, pane)
     wezterm.log_info(pane:get_current_working_dir())
 end
 
+local os_name = require('utilities').detect_os()
+
 -- Appearance
 --
 --
@@ -110,7 +112,13 @@ config.color_scheme = 'Catppuccin Macchiato'
 -- config.color_scheme = "One Dark (Frappe)"
 
 config.window_background_opacity = 0.98
--- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
+
+if os_name == 'macos' then
+    config.macos_window_background_blur = 40
+elseif os_name == 'windows' then
+    -- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
+end
+
 config.window_decorations = 'RESIZE'
 config.hide_tab_bar_if_only_one_tab = false
 
