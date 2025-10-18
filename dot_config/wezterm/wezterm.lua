@@ -185,7 +185,7 @@ end
 
 wezterm.on('gui-startup', function(cmd) end)
 
-require('statusbar').configure()
+-- require('statusbar').configure()
 
 -- config.underline_thickness = '200%'
 -- config.underline_position = '-3pt'
