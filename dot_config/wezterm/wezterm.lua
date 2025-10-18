@@ -99,9 +99,9 @@ local debug_callback = function(window, pane)
     wezterm.log_info(pane:get_current_working_dir())
 end
 
--- -- timeout_milliseconds defaults to 1000 and can be omitted
-config.leader = { key = 'Space', mods = 'SHIFT', timeout_milliseconds = 1000 }
-
+-- Appearance
+--
+--
 -- config.color_scheme = 'Catppuccin Mocha'
 -- config.color_scheme = 'Tokyo Night'
 config.color_scheme = 'Catppuccin Macchiato'
@@ -112,6 +112,7 @@ config.color_scheme = 'Catppuccin Macchiato'
 config.window_background_opacity = 0.98
 -- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
 config.window_decorations = 'RESIZE'
+config.hide_tab_bar_if_only_one_tab = false
 
 -- Fix for bright green background on some folders in ls output in  WSL
 -- config.text_background_opacity = 0.3
@@ -130,6 +131,11 @@ end
 
 config.enable_scroll_bar = true
 
+-- Keybindings
+--
+--
+-- -- timeout_milliseconds defaults to 1000 and can be omitted
+config.leader = { key = 'Space', mods = 'SHIFT', timeout_milliseconds = 1000 }
 config.keys = {
     -- Scrolling up/down
     { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
