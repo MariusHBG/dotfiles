@@ -115,7 +115,9 @@ config.window_background_opacity = 0.98
 
 if os_name == 'macos' then
     config.macos_window_background_blur = 40
+    config.window_background_opacity = 0.95
 elseif os_name == 'windows' then
+    config.window_background_opacity = 0.98
     -- config.win32_system_backdrop = 'Acrylic'  -- Does not work, breaks the terminal
 end
 
