@@ -205,6 +205,17 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-y = 'move-node-to-workspace Y'
     alt-shift-z = 'move-node-to-workspace Z'
 
+		# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+    alt-ctrl-1 = 'move-workspace-to-monitor 1'
+    alt-ctrl-2 = 'move-workspace-to-monitor 2'
+    alt-ctrl-3 = 'move-workspace-to-monitor 3'
+    alt-ctrl-4 = 'move-workspace-to-monitor 4'
+    alt-ctrl-5 = 'move-workspace-to-monitor 5'
+    alt-ctrl-6 = 'move-workspace-to-monitor 6'
+    alt-ctrl-7 = 'move-workspace-to-monitor 7'
+    alt-ctrl-8 = 'move-workspace-to-monitor 8'
+
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
