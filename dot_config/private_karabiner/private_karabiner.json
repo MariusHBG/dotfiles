@@ -69,6 +69,24 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "F2 => Return (Rename) (Only in Finder)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com.apple.finder"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "f2" },
+                                "to": [{ "key_code": "return_or_enter" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Make Ctrl+Backspace delete previous word (like Option+Backspace)",
                         "manipulators": [
                             {
