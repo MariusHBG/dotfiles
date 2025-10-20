@@ -125,19 +125,19 @@ automatically-unhide-macos-hidden-apps = false
     # alt-shift-k = 'move up'
     # alt-shift-l = 'move right'
 		# --------------------
-    # alt-shift-ctrl-h = 'move left'
-    # alt-shift-ctrl-j = 'move down'
-    # alt-shift-ctrl-k = 'move up'
-    # alt-shift-ctrl-l = 'move right'
-    # alt-shift-ctrl-left = 'move left'
-    # alt-shift-ctrl-down = 'move down'
-    # alt-shift-ctrl-up = 'move up'
-    # alt-shift-ctrl-right = 'move right'
+    alt-shift-ctrl-h = 'move left'
+    alt-shift-ctrl-j = 'move down'
+    alt-shift-ctrl-k = 'move up'
+    alt-shift-ctrl-l = 'move right'
+    alt-shift-ctrl-left = 'move left'
+    alt-shift-ctrl-down = 'move down'
+    alt-shift-ctrl-up = 'move up'
+    alt-shift-ctrl-right = 'move right'
 
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     alt-shift-home = 'resize smart -50'
-    alt-shift-end = 'resize smart +50'
+    alt--shift-end = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace 1'
@@ -247,3 +247,49 @@ automatically-unhide-macos-hidden-apps = false
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
+
+# ----------------------------------------------
+# ------ App-to-workspace assignments ----------
+# ----------------------------------------------
+
+[workspace-to-monitor-force-assignment]
+		# main = left, secondary = right -> Ensure this in MacOS display settings
+    1 = 2   # Work browser -> left
+    2 = 3   # Coding -> right
+    3 = 2   # Auxiliary coding 1 -> left
+    4 = 3   # Auxiliary coding 2 -> right
+    5 = 3   # MS Teams/Slack + Todo/notes -> right
+    6 = 2   # Outlook
+		7 = 2		# Free
+		8 = 3		# Free
+		9 = 3   # Music / personal browser
+		#   1 = 'main'        # Work browser -> left
+		#   2 = 'secondary'   # Coding -> right
+		#   3 = 'main'        # Auxiliary coding 1 -> left
+		#   4 = 'secondary'   # Auxiliary coding 2 -> right
+		#   5 = 'secondary'   # MS Teams/Slack + Todo/notes -> right
+		#   6 = 'main'        # Outlook
+		# 7 = 'main'				# Free
+		# 8 = 'secondary'		# Free
+		# 9 = 'secondary'   # Music / personal browser
+
+[[on-window-detected]]
+    if.app-id = 'com.google.Chrome'
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+    if.app-id = 'com.github.wez.wezterm'
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.teams2'
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Notes'
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.Outlook'
+    run = 'move-node-to-workspace 6'
