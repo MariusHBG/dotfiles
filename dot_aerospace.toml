@@ -136,8 +136,8 @@ automatically-unhide-macos-hidden-apps = false
 
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-    alt-home = 'resize smart -50'
-    alt-end = 'resize smart +50'
+    alt-shift-home = 'resize smart -50'
+    alt-shift-end = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace 1'
