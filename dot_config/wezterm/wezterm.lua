@@ -192,10 +192,10 @@ config.keys = {
 if os_name == 'macos' then
     local keys = {
         -- Ctrl + Arrow Keys → Send Linux-style escape sequences
-        { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5D' },
-        { key = 'RightArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5C' },
-        { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5A' },
-        { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5B' },
+        { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.SendKey { key = 'LeftArrow', mods = 'CTRL' } },
+        { key = 'RightArrow', mods = 'CTRL', action = wezterm.action.SendKey { key = 'RightArrow', mods = 'CTRL' } },
+        { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.SendKey { key = 'UpArrow', mods = 'CTRL' } },
+        { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.SendKey { key = 'DownArrow', mods = 'CTRL' } },
     }
     for _, v in ipairs(keys) do
         table.insert(config.keys, v)
