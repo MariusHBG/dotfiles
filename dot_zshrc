@@ -42,14 +42,15 @@ zinit cdreplay -q # replay all cached completions, recommended by zinit document
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+
+# Vim bindings
+bindkey -v
+
 # Bind ctrl-f to trigger autosuggest
 bindkey '^y' autosuggest-accept
 # Setting those two will respect already typed text when showing history
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-
-# Vim bindings
-bindkey -v
 
 # Persist history across sessions
 HISTSIZE=5000
