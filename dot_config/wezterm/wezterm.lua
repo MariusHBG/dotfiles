@@ -189,6 +189,19 @@ config.keys = {
     { key = 'q', mods = 'LEADER', action = wezterm.action_callback(debug_callback) },
 }
 
+if os_name == 'macos' then
+    local keys = {
+        -- Ctrl + Arrow Keys → Send Linux-style escape sequences
+        { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5D' },
+        { key = 'RightArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5C' },
+        { key = 'UpArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5A' },
+        { key = 'DownArrow', mods = 'CTRL', action = wezterm.action.SendString '\x1b[1;5B' },
+    }
+    for _, v in ipairs(keys) do
+        table.insert(config.keys, v)
+    end
+end
+
 for i = 1, 8 do
     -- CTRL+ALT + number to move to that position
     table.insert(config.keys, {
