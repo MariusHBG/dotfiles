@@ -255,15 +255,15 @@ automatically-unhide-macos-hidden-apps = false
 
 [workspace-to-monitor-force-assignment]
 		# main = left, secondary = right -> Ensure this in MacOS display settings
-    1 = 2   # Work browser -> left
-    2 = 3   # Coding -> right
-    3 = 2   # Auxiliary coding 1 -> left
-    4 = 3   # Auxiliary coding 2 -> right
-    5 = 3   # MS Teams/Slack + Todo/notes -> right
-    6 = 2   # Outlook
-		7 = 2		# Free
-		8 = 3		# Free
-		9 = 3   # Music / personal browser
+    1 = 1   # Work browser -> left
+    2 = 2   # Coding -> right
+    3 = 1   # Auxiliary coding 1 -> left
+    4 = 2   # Auxiliary coding 2 -> right
+    5 = 2   # MS Teams/Slack + Todo/notes -> right
+    6 = 1   # Outlook
+		7 = 1		# Free
+		8 = 2		# Free
+		9 = 2   # Music / personal browser
 		#   1 = 'main'        # Work browser -> left
 		#   2 = 'secondary'   # Coding -> right
 		#   3 = 'main'        # Auxiliary coding 1 -> left
