@@ -253,17 +253,31 @@ automatically-unhide-macos-hidden-apps = false
 # ------ App-to-workspace assignments ----------
 # ----------------------------------------------
 
+# Asymmetric two monitors setup (right is main, left is for less relevant stuff)
+# All workspaces are assigned to main. Secondary is only used on demand
 [workspace-to-monitor-force-assignment]
+		  1 = 2   # Coding
+		  2 = 2   # Work browser
+		  3 = 2   # Auxiliary coding 1
+		  4 = 2   # Auxiliary coding 2
+		  5 = 2   # MS Teams/Slack + Todo/notes
+		  6 = 2   # Outlook
+
+# Symmetric two monitors setup
+# [workspace-to-monitor-force-assignment]
 		# main = left, secondary = right -> Ensure this in MacOS display settings
-    1 = 1   # Work browser -> left
-    2 = 2   # Coding -> right
-    3 = 1   # Auxiliary coding 1 -> left
-    4 = 2   # Auxiliary coding 2 -> right
-    5 = 2   # MS Teams/Slack + Todo/notes -> right
-    6 = 1   # Outlook
-		7 = 1		# Free
-		8 = 2		# Free
-		9 = 2   # Music / personal browser
+		#   1 = 2   # Coding -> right
+		#   2 = 1   # Work browser -> left
+		#   3 = 1   # Auxiliary coding 1 -> left
+		#   4 = 2   # Auxiliary coding 2 -> right
+		#   5 = 2   # MS Teams/Slack + Todo/notes -> right
+		#   6 = 1   # Outlook
+		# 7 = 1		# Free
+		# 8 = 2		# Free
+		# 9 = 2   # Music / personal browser
+
+
+
 		#   1 = 'main'        # Work browser -> left
 		#   2 = 'secondary'   # Coding -> right
 		#   3 = 'main'        # Auxiliary coding 1 -> left
@@ -275,11 +289,11 @@ automatically-unhide-macos-hidden-apps = false
 		# 9 = 'secondary'   # Music / personal browser
 
 [[on-window-detected]]
-    if.app-id = 'com.google.Chrome'
+    if.app-id = 'com.github.wez.wezterm'
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-    if.app-id = 'com.github.wez.wezterm'
+    if.app-id = 'com.google.Chrome'
     run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
