@@ -292,9 +292,18 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'com.github.wez.wezterm'
     run = 'move-node-to-workspace 1'
 
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
 [[on-window-detected]]
     if.app-id = 'com.google.Chrome'
     run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.axosoft.gitkraken'
+    run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.teams2'
