@@ -147,6 +147,9 @@ config.enable_scroll_bar = true
 -- -- timeout_milliseconds defaults to 1000 and can be omitted
 config.leader = { key = 'Space', mods = 'SHIFT', timeout_milliseconds = 1000 }
 config.keys = {
+    -- Disable default emoji picker to allow passthrough to nvim
+    { key = 'u', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
+
     -- Scrolling up/down
     { key = 'UpArrow', mods = 'SHIFT', action = act.ScrollByLine(-1) },
     { key = 'DownArrow', mods = 'SHIFT', action = act.ScrollByLine(1) },
