@@ -105,8 +105,8 @@ local os_name = require('utilities').detect_os()
 --
 --
 -- config.color_scheme = 'Catppuccin Mocha'
--- config.color_scheme = 'Tokyo Night'
-config.color_scheme = 'Catppuccin Macchiato'
+config.color_scheme = 'Tokyo Night'
+-- config.color_scheme = 'Catppuccin Macchiato'
 -- config.color_scheme = 'Catppuccin Frappe'
 -- config.color_scheme = "OneHalfDark"
 -- config.color_scheme = "One Dark (Frappe)"
