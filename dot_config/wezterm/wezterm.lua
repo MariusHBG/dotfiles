@@ -122,7 +122,7 @@ elseif os_name == 'windows' then
 end
 
 config.window_decorations = 'RESIZE'
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 
 -- Fix for bright green background on some folders in ls output in  WSL
 -- config.text_background_opacity = 0.3
