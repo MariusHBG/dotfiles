@@ -57,6 +57,7 @@ SAVEHIST=$HISTSIZE
 HISTDUP=erase # Erase duplicates in history file
 setopt appendhistory # zsh will append to history file instead of overwriting it
 setopt sharehistory
+setopt IGNORE_EOF # Prevent accidental shell exit on Ctrl-D
 setopt hist_ignore_space # Allows to not write command to history by putting a space before it
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
