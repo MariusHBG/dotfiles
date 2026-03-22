@@ -141,6 +141,9 @@ end
 
 config.enable_scroll_bar = true
 
+-- Opencode: Fix shift-enter sending prompt submit instead of line break
+config.enable_csi_u_key_encoding = true
+
 -- Keybindings
 --
 --
