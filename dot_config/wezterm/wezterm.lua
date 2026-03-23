@@ -148,7 +148,7 @@ config.enable_csi_u_key_encoding = true
 --
 --
 -- -- timeout_milliseconds defaults to 1000 and can be omitted
-config.leader = { key = 'Space', mods = 'SHIFT', timeout_milliseconds = 1000 }
+config.leader = { key = 't', mods = 'ALT', timeout_milliseconds = 1000 }
 config.keys = {
     -- Disable default emoji picker to allow passthrough to nvim
     { key = 'u', mods = 'SHIFT|CTRL', action = act.DisableDefaultAssignment },
