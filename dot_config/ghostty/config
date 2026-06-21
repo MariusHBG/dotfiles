@@ -1,0 +1,5 @@
+theme = Tokyonight Night
+background-opacity = 0.98
+background-blur = macos-glass-clear
+macos-titlebar-style = transparent
+keybind = alt+s=text:\x1bs
