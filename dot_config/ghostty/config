@@ -3,3 +3,6 @@ background-opacity = 0.98
 background-blur = macos-glass-clear
 macos-titlebar-style = transparent
 keybind = alt+s=text:\x1bs
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
+macos-option-as-alt = left
