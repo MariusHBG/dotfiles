@@ -87,8 +87,9 @@ keybindings:
           name: octo pr
           command: >
             branch="{{.HeadRefName}}" &&
-            worktree_path="$PWD/$branch" &&
+            worktree_path="$(dirname "$PWD")/$(basename "$PWD").worktrees/$branch" &&
             if [ ! -d "$worktree_path" ]; then
+              mkdir -p "$(dirname "$PWD")/$(basename "$PWD").worktrees" &&
               git -C "$PWD" worktree add "$worktree_path" "$branch" 2>/dev/null ||
               git -C "$PWD" worktree add -b "$branch" "$worktree_path" "origin/$branch";
               git -C "$worktree_path" branch --set-upstream-to="origin/$branch" "$branch";
