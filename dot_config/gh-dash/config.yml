@@ -94,7 +94,7 @@ keybindings:
               git -C "$PWD" worktree add -b "$branch" "$worktree_path" "origin/$branch";
               git -C "$worktree_path" branch --set-upstream-to="origin/$branch" "$branch";
             fi &&
-            tmux new-window -c "$worktree_path" "nvim -c ':Octo pr edit {{.PrNumber}}'; exec $SHELL"
+            sesh connect "$worktree_path"
 repoPaths: {}
 theme:
     ui:
